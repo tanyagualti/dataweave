@@ -1,0 +1,58 @@
+input is object  of objects thats why we use filterObject
+
+input:-
+{
+    "content":{
+        "product":"A",
+        "year":2020
+    },
+    "content": {
+        "product":"B",
+        "year":2019
+    }
+}
+
+dw:-
+%dw 2.0
+output application/json
+---
+payload filterObject $.year>2019 
+
+
+output-
+{
+  "content": {
+    "product": "A",
+    "year": 2020
+  }
+}
+
+
+
+input of array of objects that why we use filter not filterObject
+
+input:-
+[
+    {
+        "product":"A",
+        "year":2020
+    },
+     {
+        "product":"B",
+        "year":2019
+    }
+]
+
+dw-
+%dw 2.0
+output application/json
+---
+payload filter $.year>2019 
+
+output:-
+[
+  {
+    "product": "A",
+    "year": 2020
+  }
+]
