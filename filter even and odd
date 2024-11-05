@@ -1,0 +1,30 @@
+
+In DataWeave, the $ symbol is used as a reference to the current element or item in a collection or stream that is being processed. 
+$ means current payload elements
+input:-[0,1,2,3,4,5,6,7,8]
+
+dw:- %dw 2.0
+output application/json
+---
+{
+    "Even": payload filter(($ mod 2) == 0),                   
+
+    "Odd": payload filter !(($ mod 2)== 0)
+}
+
+
+output:-{
+  "Even": [
+    0,
+    2,
+    4,
+    6,
+    8
+  ],
+  "Odd": [
+    1,
+    3,
+    5,
+    7
+  ]
+}
