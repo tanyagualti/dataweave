@@ -1,0 +1,55 @@
+input:-
+[
+    {
+        "msg":"hello"
+    },
+    {
+        "m":"h"
+    }
+]
+
+
+
+dw:-
+%dw 2.0
+output application/json
+---
+payload map ((item, index) ->
+   item mapObject ((value, key, index) -> 
+   (value) : key
+   )
+ )
+
+
+
+explanation:--
+
+payload:  This is the input data you are working with. The payload could be a collection of key-value pairs
+map: The map function is used to iterate over each element in a collection (in this case, payload). It applies a transformation (the function) to each element of the collection
+   map syntax:-
+collection map ((item, index) -> transformation)
+
+item is the current element in the collection.
+index is the index of the current element in the collection.
+
+mapObject: After the map function processes the payload, the script is working with each individual item. The item is expected to be a map (object) based on the usage of mapObject.
+mapObject is a function used to iterate over key-value pairs inside a map (object). It applies a transformation to each key-value pair.
+
+syntax:--
+mapObject ((value, key, index) -> transformation)
+
+value is the current value in the map.
+key is the current key associated with the value.
+index is the index of the current key-value pair in the map.
+
+
+ output:-
+
+ [
+  {
+    "hello": "msg"
+  },
+  {
+    "h": "m"
+  }
+]
