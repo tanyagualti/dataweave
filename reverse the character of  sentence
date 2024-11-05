@@ -1,0 +1,26 @@
+input:- {
+    "reverse":"i am sona"
+}
+
+dw:-
+
+%dw 2.0
+output application/json
+---
+(payload.reverse splitBy('') ) [-1 to 0] joinBy('')
+
+
+
+output:-
+"anos ma i"
+
+(payload.msg splitBy(''))
+
+payload.msg: This accesses the msg field in the input data. If payload = { "msg": "hello world" }, then payload.msg = "hello world".
+
+
+.splitBy(''): This splits the string "hello world" into a list of individual characters. So "hello world" becomes the list ["h", "e", "l", "l", "o", " ", "w", "o", "r", "l", "d"].
+[-1 to 0]
+
+This is a range operation, which extracts a sublist of characters starting from the last element (-1) and ending at the first element (0).
+When applied to the list ["h", "e", "l", "l", "o", " ", "w", "o", "r", "l", "d"], the [-1 to 0] range selects the last two characters: ["d", " "] (the space character comes after "d").
