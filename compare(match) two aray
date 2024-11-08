@@ -1,0 +1,8 @@
+%dw 2.0
+output application/json
+var numbers = [5, 10, 15, 20, 25]
+var actual = [10, 20]
+---
+// numbers -- (numbers -- actual)    //comman values
+
+// numbers -- actual  //different values
