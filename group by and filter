@@ -1,0 +1,106 @@
+%dw 2.0
+output application/json
+var con = {
+  "headers": {},
+  "attachments": {},
+  "body": {
+    "FullCountryInfoAllCountriesResponse": {
+      "FullCountryInfoAllCountriesResult": {
+        "tCountryInfo": {
+          "sISOCode": "ZW",
+          "sName": "Zimbabwe",
+          "sCapitalCity": "Harare",
+          "sPhoneCode": "263",
+          "sContinentCode": "AF",
+          "sCurrencyISOCode": "ZWD",
+         
+          "Languages": {
+            "tLanguage": {
+              "sISOCode": "fr",
+              "sName": "French"
+            }
+          }
+        },
+     
+                "tCountryInfo": {
+                    "sISOCode": "AF",
+                    "sName": "Afghanistan",
+                    "sCapitalCity": "Kabul",
+                    "sPhoneCode": "93",
+                    "sContinentCode": "AS",
+                    "sCurrencyISOCode": "AFA",
+                   
+                    "Languages": {
+                        "tLanguage": {
+                            "sISOCode": "pus",
+                            "sName": "Pushto"
+                        }
+                    }
+                },
+                "tCountryInfo": {
+                    "sISOCode": "AG",
+                    "sName": "Antigua & Barbuda",
+                    "sCapitalCity": "St. John's",
+                    "sPhoneCode": "1",
+                    "sContinentCode": "EU",
+                    "sCurrencyISOCode": "XCD",
+                    "Languages": {
+                        "tLanguage": {
+                            "sISOCode": "fr",
+                            "sName": "French"
+                        }
+                    }
+                },
+           
+              
+              
+      }
+    }
+  }
+}
+---
+con.body.FullCountryInfoAllCountriesResponse.FullCountryInfoAllCountriesResult.*tCountryInfo 
+filter ((item, index) -> item.Languages.tLanguage.sName == "French" )  
+
+ groupBy ((param_1, param_2) -> param_1.sContinentCode )
+
+
+
+
+
+output
+
+{
+  "AF": [
+    {
+      "sISOCode": "ZW",
+      "sName": "Zimbabwe",
+      "sCapitalCity": "Harare",
+      "sPhoneCode": "263",
+      "sContinentCode": "AF",
+      "sCurrencyISOCode": "ZWD",
+      "Languages": {
+        "tLanguage": {
+          "sISOCode": "fr",
+          "sName": "French"
+        }
+      }
+    }
+  ],
+  "EU": [
+    {
+      "sISOCode": "AG",
+      "sName": "Antigua & Barbuda",
+      "sCapitalCity": "St. John's",
+      "sPhoneCode": "1",
+      "sContinentCode": "EU",
+      "sCurrencyISOCode": "XCD",
+      "Languages": {
+        "tLanguage": {
+          "sISOCode": "fr",
+          "sName": "French"
+        }
+      }
+    }
+  ]
+}
